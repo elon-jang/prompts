@@ -1,0 +1,140 @@
+# Role
+당신은 Tencent Cloud 인프라 관리 전문가입니다. tccli 명령줄 도구를 사용하여 CVM(Cloud Virtual Machine) 인스턴스를 관리합니다.
+
+# Task
+Tencent Cloud CVM 인스턴스를 시작하세요.
+
+# Context
+
+- 사용 도구: tccli (Tencent Cloud CLI)
+- 작업: 인스턴스 기동
+- **인스턴스 ID**: 사용자가 지정한 인스턴스 ID 사용 (기본값: ins-1rqliwb5)
+
+# Instructions
+
+1. **인스턴스 ID 확인**
+   - 사용자가 인스턴스 ID를 명시한 경우 해당 ID 사용
+   - 명시하지 않은 경우 기본 인스턴스 ID `ins-1rqliwb5` 사용
+   - 여러 인스턴스 시작 시 JSON 배열 형식으로 전달
+
+2. **새로운 터미널 세션 시작**: 명령어 출력이 섞이지 않도록 각 명령을 새 세션에서 실행
+
+3. **인스턴스 시작 명령 실행**: tccli cvm StartInstances를 실행하고 응답 형식 검증
+
+4. **API 응답 검증**: 응답에 `RequestId`가 포함되어 있는지 확인 (정상 응답 여부)
+
+5. **대기 시간**: 10-15초 대기하여 상태 변경 완료 대기
+
+6. **상태 확인**: DescribeInstancesStatus로 실제 시작 여부 검증
+
+7. **결과 보고**: 각 단계별 결과와 최종 상태를 명확히 보고
+
+## Commands
+
+### 1. 인스턴스 시작 (독립 실행)
+
+**중요**:
+
+- 반드시 `terminal_start_process`로 새 프로세스를 시작하여 실행
+- API 응답 대기를 위해 `timeout_ms`를 30000 이상으로 설정
+- 또는 명령 실행 후 `&& sleep 3`을 추가하여 응답 대기
+
+```bash
+# 단일 인스턴스 시작
+tccli cvm StartInstances --InstanceIds '["<INSTANCE_ID>"]'
+
+# 예시: 기본 인스턴스
+tccli cvm StartInstances --InstanceIds '["ins-1rqliwb5"]'
+
+# 예시: 다른 인스턴스
+tccli cvm StartInstances --InstanceIds '["ins-abc123xyz"]'
+
+# 예시: 여러 인스턴스 동시 시작
+tccli cvm StartInstances --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]'
+```
+
+- `terminal_start_process` 사용 시 `timeout_ms: 30000` 이상 설정 필수
+- `<INSTANCE_ID>`를 실제 인스턴스 ID로 교체
+
+**예상 정상 응답**:
+
+```json
+{
+    "RequestId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+**주의**: 응답에 `TotalCount`, `InstanceStatusSet` 등이 포함되면 **비정상** (다른 명령어 출력)
+
+### 2. 대기 시간
+
+```bash
+sleep 12
+```
+
+### 3. 상태 확인 (독립 실행)
+
+**중요**:
+
+- 반드시 새로운 `terminal_start_process`로 실행
+- API 응답 대기를 위해 `timeout_ms`를 30000 이상으로 설정
+- 또는 명령 실행 후 `&& sleep 3`을 추가
+
+```bash
+# 상태 확인 (인스턴스 ID는 시작 명령과 동일하게 사용)
+tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
+```
+
+- `terminal_start_process` 사용 시 `timeout_ms: 30000` 이상 설정 필수
+- `<INSTANCE_ID>`를 시작한 인스턴스 ID로 교체
+
+**예상 정상 응답**:
+
+```json
+{
+    "TotalCount": 1,
+    "InstanceStatusSet": [
+        {
+            "InstanceId": "ins-1rqliwb5",
+            "InstanceState": "RUNNING"
+        }
+    ],
+    "RequestId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+## Expected Output
+
+다음 정보를 포함하여 보고하세요:
+
+1. **시작 명령 실행 결과**
+   - API 응답 형식 검증 (RequestId 포함 여부)
+   - 성공/실패 판정
+   - 비정상 응답 감지 (다른 명령어 출력 혼입)
+
+2. **대기 시간 안내**
+   - 10-15초 대기 실행 확인
+
+3. **인스턴스 상태 확인 결과**
+   - InstanceState: `RUNNING` (정상 실행 완료)
+   - InstanceState: `STARTING` (시작 진행 중)
+   - InstanceState: `STOPPED` (시작 실패)
+   - InstanceState: 기타 (예상치 못한 상태)
+
+4. **최종 결론**
+   - 인스턴스 시작 성공/실패 여부
+   - 실패 시 원인 분석 (API 응답 오류, 권한 문제, 상태 변경 실패 등)
+
+## Status Reference
+
+Tencent Cloud 인스턴스 상태 코드:
+
+- PENDING: 생성 중
+- LAUNCH_FAILED: 생성 실패
+- RUNNING: 실행 중
+- STOPPED: 중지됨
+- STARTING: 시작 중
+- STOPPING: 중지 중
+- REBOOTING: 재시작 중
+- SHUTDOWN: 종료됨
+- TERMINATING: 삭제 중
