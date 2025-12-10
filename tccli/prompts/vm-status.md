@@ -24,17 +24,28 @@ Tencent Cloud CVM 인스턴스의 현재 상태를 조회하세요.
    - 반드시 `terminal_start_process`로 새 프로세스 생성
 
 3. **상태 조회 명령 실행**
-   - tccli cvm DescribeInstancesStatus 실행
+   - tccli cvm DescribeInstances 실행 (DescribeInstancesStatus 대신 사용)
    - **중요**: API 응답을 받을 때까지 충분한 시간(최소 10-15초) 대기
    - `timeout_ms`를 넉넉하게 설정 (30000ms 이상 권장)
 
 4. **API 응답 검증**
-   - 응답에 `TotalCount`, `InstanceStatusSet`, `RequestId`가 포함되어 있는지 확인
+   - 응답에 `TotalCount`, `InstanceSet`, `RequestId`가 포함되어 있는지 확인
    - 응답에 `RequestId`만 있으면 비정상 (상태 정보 누락)
 
-5. **결과 보고**
-   - 현재 인스턴스 상태를 명확히 보고
-   - 상태 코드의 의미 설명
+5. **주요 정보 추출 및 포맷팅**
+   - 인스턴스 ID (InstanceId)
+   - 인스턴스 이름 (InstanceName)
+   - 인스턴스 상태 (InstanceState)
+   - 과금 상태 (StopChargingMode): KEEP_CHARGING 또는 NOT_APPLICABLE
+   - 공인 IP (PublicIpAddresses)
+   - 사설 IP (PrivateIpAddresses)
+   - CPU (CPU)
+   - 메모리 (Memory GB)
+   - 생성 시간 (CreatedTime)
+
+6. **결과 보고**
+   - 모든 인스턴스 정보를 동일한 포맷으로 출력
+   - 과금 상태를 명확히 표시
 
 ## Commands
 
@@ -48,33 +59,40 @@ Tencent Cloud CVM 인스턴스의 현재 상태를 조회하세요.
 **명령 형식**:
 
 ```bash
-# 단일 인스턴스 조회
-tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
+# 단일 인스턴스 조회 (상세 정보 포함)
+tccli cvm DescribeInstances --InstanceIds '["<INSTANCE_ID>"]'
 
 # 예시: 기본 인스턴스
-tccli cvm DescribeInstancesStatus --InstanceIds '["ins-1rqliwb5"]'
+tccli cvm DescribeInstances --InstanceIds '["ins-1rqliwb5"]'
 
 # 예시: 다른 인스턴스
-tccli cvm DescribeInstancesStatus --InstanceIds '["ins-abc123xyz"]'
+tccli cvm DescribeInstances --InstanceIds '["ins-abc123xyz"]'
 
 # 예시: 여러 인스턴스 동시 조회
-tccli cvm DescribeInstancesStatus --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]'
+tccli cvm DescribeInstances --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]'
 ```
 
 **실행 방법**:
 
 - `terminal_start_process` 사용 시 `timeout_ms: 30000` 이상 설정 필수
-- 또는 명령 체이닝: `tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]' && sleep 3`
+- 또는 명령 체이닝: `tccli cvm DescribeInstances --InstanceIds '["<INSTANCE_ID>"]' && sleep 3`
 
 **예상 정상 응답**:
 
 ```json
 {
     "TotalCount": 1,
-    "InstanceStatusSet": [
+    "InstanceSet": [
         {
             "InstanceId": "ins-1rqliwb5",
-            "InstanceState": "RUNNING"
+            "InstanceName": "my-instance",
+            "InstanceState": "RUNNING",
+            "StopChargingMode": "NOT_APPLICABLE",
+            "PublicIpAddresses": ["1.2.3.4"],
+            "PrivateIpAddresses": ["10.0.0.1"],
+            "CPU": 2,
+            "Memory": 4,
+            "CreatedTime": "2024-01-01T00:00:00Z"
         }
     ],
     "RequestId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -89,27 +107,61 @@ tccli cvm DescribeInstancesStatus --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"
 }
 ```
 
-- `TotalCount`와 `InstanceStatusSet`이 없으면 **오류**: 출력이 너무 빨리 종료되었거나 API 오류
+- `TotalCount`와 `InstanceSet`이 없으면 **오류**: 출력이 너무 빨리 종료되었거나 API 오류
 
 ## Expected Output
 
-다음 정보를 포함하여 보고하세요:
+다음 정보를 포함하여 동일한 포맷으로 보고하세요:
 
-1. **상태 조회 결과**
-   - API 응답 형식 검증 (TotalCount, InstanceStatusSet, RequestId 포함 여부)
+### 출력 포맷 (모든 VM 상태 조회 시 동일하게 사용)
+
+```text
+=== VM 인스턴스 정보 ===
+
+인스턴스 ID: ins-1rqliwb5
+인스턴스 이름: my-instance
+상태: RUNNING (실행 중)
+과금 상태: NOT_APPLICABLE (실행 중이므로 과금됨) / KEEP_CHARGING (중지 상태지만 과금 유지) / STOP_CHARGING (중지 상태, 과금 중지)
+
+네트워크:
+- 공인 IP: 1.2.3.4
+- 사설 IP: 10.0.0.1
+
+리소스:
+- CPU: 2 코어
+- 메모리: 4 GB
+
+생성 시간: 2024-01-01T00:00:00Z
+```
+
+### 필수 포함 정보
+
+1. **API 응답 검증**
+   - TotalCount, InstanceSet, RequestId 포함 여부 확인
    - 성공/실패 판정
 
-2. **인스턴스 현재 상태**
-   - InstanceId: ins-1rqliwb5
-   - InstanceState: 현재 상태 코드
-   - 상태 설명: 한글로 상태 의미 설명
+2. **인스턴스 기본 정보**
+   - 인스턴스 ID
+   - 인스턴스 이름
+   - 상태 (한글 설명 포함)
+   - **과금 상태** (매우 중요)
 
-3. **상태 해석**
-   - `RUNNING`: 정상 실행 중
-   - `STOPPED`: 중지됨
-   - `STARTING`: 시작 진행 중
-   - `STOPPING`: 중지 진행 중
-   - 기타: 예상치 못한 상태 설명
+3. **네트워크 정보**
+   - 공인 IP 주소
+   - 사설 IP 주소
+
+4. **리소스 정보**
+   - CPU 코어 수
+   - 메모리 크기 (GB)
+
+5. **기타 정보**
+   - 생성 시간
+
+### 과금 상태 설명
+
+- `NOT_APPLICABLE`: VM이 RUNNING 상태일 때 (과금 중)
+- `KEEP_CHARGING`: VM이 STOPPED 상태이지만 과금 유지 중
+- `STOP_CHARGING`: VM이 STOPPED 상태이고 과금 중지됨
 
 ## Status Reference
 

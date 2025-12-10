@@ -81,8 +81,8 @@ sleep 12
 - 또는 명령 실행 후 `&& sleep 3`을 추가
 
 ```bash
-# 상태 확인 (인스턴스 ID는 중지 명령과 동일하게 사용)
-tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
+# 상태 확인 (상세 정보 포함 - 과금 상태 확인)
+tccli cvm DescribeInstances --InstanceIds '["<INSTANCE_ID>"]'
 ```
 
 - `terminal_start_process` 사용 시 `timeout_ms: 30000` 이상 설정 필수
@@ -93,10 +93,17 @@ tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
 ```json
 {
     "TotalCount": 1,
-    "InstanceStatusSet": [
+    "InstanceSet": [
         {
             "InstanceId": "ins-1rqliwb5",
-            "InstanceState": "STOPPED"
+            "InstanceName": "my-instance",
+            "InstanceState": "STOPPED",
+            "StopChargingMode": "STOP_CHARGING",
+            "PublicIpAddresses": ["1.2.3.4"],
+            "PrivateIpAddresses": ["10.0.0.1"],
+            "CPU": 2,
+            "Memory": 4,
+            "CreatedTime": "2024-01-01T00:00:00Z"
         }
     ],
     "RequestId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -105,7 +112,30 @@ tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
 
 ## Expected Output
 
-다음 정보를 포함하여 보고하세요:
+다음 정보를 포함하여 **동일한 포맷**으로 보고하세요:
+
+### 출력 포맷 (vm-status.md와 동일한 포맷 사용)
+
+```text
+=== VM 인스턴스 정보 ===
+
+인스턴스 ID: ins-1rqliwb5
+인스턴스 이름: my-instance
+상태: STOPPED (중지됨)
+과금 상태: STOP_CHARGING (중지 상태, 과금 중지)
+
+네트워크:
+- 공인 IP: 1.2.3.4
+- 사설 IP: 10.0.0.1
+
+리소스:
+- CPU: 2 코어
+- 메모리: 4 GB
+
+생성 시간: 2024-01-01T00:00:00Z
+```
+
+### 보고 내용
 
 1. **중지 명령 실행 결과**
    - API 응답 형식 검증 (RequestId 포함 여부)
@@ -115,14 +145,16 @@ tccli cvm DescribeInstancesStatus --InstanceIds '["<INSTANCE_ID>"]'
 2. **대기 시간 안내**
    - 10-15초 대기 실행 확인
 
-3. **인스턴스 상태 확인 결과**
+3. **인스턴스 상태 확인 결과 (위 포맷 사용)**
+   - 모든 주요 정보 포함 (ID, 이름, 상태, **과금 상태**, 네트워크, 리소스)
    - InstanceState: `STOPPED` (정상 중지 완료)
    - InstanceState: `STOPPING` (중지 진행 중)
    - InstanceState: `RUNNING` (중지 실패)
-   - InstanceState: 기타 (예상치 못한 상태)
+   - **StopChargingMode: `STOP_CHARGING` 확인 (과금 중지 확인)**
 
 4. **최종 결론**
    - 인스턴스 중지 성공/실패 여부
+   - 과금 중지 확인 여부
    - 실패 시 원인 분석 (API 응답 오류, 권한 문제, 상태 변경 실패 등)
 
 ## Status Reference
