@@ -84,13 +84,13 @@ tccli cvm StartInstances --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]'
 
 ```bash
 # 단일 인스턴스 중지
-tccli cvm StopInstances --InstanceIds '["<INSTANCE_ID>"]'
+tccli cvm StopInstances --InstanceIds '["<INSTANCE_ID>"]' --StoppedMode STOP_CHARGING
 
 # 예시: 기본 인스턴스
-tccli cvm StopInstances --InstanceIds '["ins-1rqliwb5"]'
+tccli cvm StopInstances --InstanceIds '["ins-1rqliwb5"]' --StoppedMode STOP_CHARGING
 
 # 예시: 여러 인스턴스 동시 중지
-tccli cvm StopInstances --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]'
+tccli cvm StopInstances --InstanceIds '["ins-1rqliwb5","ins-abc123xyz"]' --StoppedMode STOP_CHARGING
 ```
 
 - `terminal_start_process` 사용 시 `timeout_ms: 30000` 이상 설정 필수

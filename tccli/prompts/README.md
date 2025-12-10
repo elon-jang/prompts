@@ -56,3 +56,18 @@ tccli cvm DescribeInstances --InstanceIds '["ins-1rqliwb5"]'
 ```bash
 tccli cvm RebootInstances --InstanceIds '["ins-1rqliwb5"]'
 ```
+
+## 주요 파라미터 설명
+
+### StoppedMode
+
+VM 중지 시 과금 모드를 제어합니다:
+
+- `STOP_CHARGING`: VM 중지 시 과금 중지 (기본 설정)
+- `KEEP_CHARGING`: VM 중지 후에도 과금 유지
+
+**사용 예시:**
+
+```bash
+tccli cvm StopInstances --InstanceIds '["ins-1rqliwb5"]' --StoppedMode STOP_CHARGING
+```
