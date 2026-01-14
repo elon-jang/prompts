@@ -1,26 +1,24 @@
 # AI Prompts Collection
 
-AI 어시스턴트와 함께 사용할 수 있는 프롬프트 템플릿 모음입니다.
+좋은 AI 프롬프트 모음입니다.
 
-## 프로젝트 구조
+## Infrastructure (인프라 관리)
 
-```text
-prompts/
-├── tccli/prompts/     # Tencent Cloud VM 관리
-├── askquestion/       # SPEC 인터뷰 워크플로우
-└── CLAUDE.md          # Claude Code 저장소 가이드
-```
+- `infrastructure/tencent-vm-start.md` - Tencent Cloud VM 시작
+- `infrastructure/tencent-vm-stop.md` - Tencent Cloud VM 중지
+- `infrastructure/tencent-vm-status.md` - Tencent Cloud VM 상태 조회
+- `infrastructure/tencent-vm-manage.md` - Tencent Cloud VM 통합 관리
 
-## 카테고리
+## Development (개발)
 
-- **[tccli/prompts](tccli/prompts/)** - Tencent Cloud VM 시작/중지/상태 조회
-- **[askquestion](askquestion/)** - SPEC.md 기반 심층 인터뷰 프롬프트
+- `development/spec-interview.md` - SPEC.md 기반 요구사항 인터뷰
+- `development/plan-mode-setting.md` - AI 에이전트 Plan Mode 설정
 
 ## 사용 방법
 
-1. **직접 복사** - 프롬프트 내용을 AI 어시스턴트에게 전달
-2. **Claude Code 슬래시 커맨드** - `.claude/commands/`에 복사 후 `/명령어`로 사용
-3. **Terminal MCP 통합** - 실제 시스템 명령 실행
+1. 프롬프트 파일 열기
+2. 내용 복사해서 AI에게 전달
+3. (선택) Claude Code에서 슬래시 커맨드로 사용
 
 ## 라이선스
 

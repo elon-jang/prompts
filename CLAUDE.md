@@ -4,25 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This repository contains AI prompt templates for managing Tencent Cloud CVM (Cloud Virtual Machine) instances using the `tccli` command-line tool. The prompts are designed to be used with AI assistants that have access to Terminal MCP (Model Context Protocol) or as Claude Code slash commands.
+This repository contains AI prompt templates for various tasks including infrastructure management and development workflows. The prompts are designed to be used with AI assistants that have access to Terminal MCP (Model Context Protocol) or as Claude Code slash commands.
 
 ## Repository Structure
 
 ```
 /
-├── tccli/
-│   └── prompts/          # Tencent Cloud VM management prompts
-│       ├── README.md     # Korean documentation for prompt usage
-│       ├── vm-start.md   # VM instance start prompt
-│       ├── vm-stop.md    # VM instance stop prompt
-│       ├── vm-status.md  # VM instance status query prompt
-│       └── vm-manage.md  # Unified VM start/stop prompt
+├── infrastructure/              # Infrastructure management prompts
+│   ├── tencent-vm-start.md     # VM instance start
+│   ├── tencent-vm-stop.md      # VM instance stop
+│   ├── tencent-vm-status.md    # VM instance status query
+│   └── tencent-vm-manage.md    # Unified VM start/stop
+├── development/                 # Development workflow prompts
+│   ├── spec-interview.md       # SPEC.md interview workflow
+│   └── plan-mode-setting.md    # AI agent Plan Mode configuration
+├── README.md
+├── CLAUDE.md
 └── .gitignore
 ```
 
 ## Prompt Architecture
 
-All prompts in `tccli/prompts/` follow a consistent structure:
+All infrastructure prompts in `infrastructure/` follow a consistent structure:
 
 1. **Role**: Defines the AI as a Tencent Cloud infrastructure management expert
 2. **Task**: Specifies the operation (start, stop, status query)
@@ -109,10 +112,11 @@ To use these prompts as Claude Code slash commands:
 
 ```bash
 # Copy prompts to Claude Code commands directory
-cp tccli/prompts/vm-start.md .claude/commands/vm-start.md
-cp tccli/prompts/vm-stop.md .claude/commands/vm-stop.md
-cp tccli/prompts/vm-status.md .claude/commands/vm-status.md
-cp tccli/prompts/vm-manage.md .claude/commands/vm-manage.md
+cp infrastructure/tencent-vm-start.md .claude/commands/vm-start.md
+cp infrastructure/tencent-vm-stop.md .claude/commands/vm-stop.md
+cp infrastructure/tencent-vm-status.md .claude/commands/vm-status.md
+cp infrastructure/tencent-vm-manage.md .claude/commands/vm-manage.md
+cp development/spec-interview.md .claude/commands/spec-interview.md
 ```
 
 Then use as:
