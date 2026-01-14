@@ -11,8 +11,9 @@
 
 ## Development (개발)
 
-- `development/spec-interview.md` - SPEC.md 기반 요구사항 인터뷰
+- `development/llm-skill-design-principles.md` - Best practices for designing LLM skills with orchestration and tool separation
 - `development/plan-mode-setting.md` - AI 에이전트 Plan Mode 설정
+- `development/spec-interview.md` - SPEC.md 기반 요구사항 인터뷰
 
 ## 사용 방법
 
