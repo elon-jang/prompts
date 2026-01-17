@@ -15,6 +15,10 @@
 - `development/plan-mode-setting.md` - AI 에이전트 Plan Mode 설정
 - `development/spec-interview.md` - SPEC.md 기반 요구사항 인터뷰
 
+## Productivity
+
+- `productivity/pdf-본문-외-페이지-삭제.md` - PDF 본문 외 페이지 삭제 도구
+
 ## 사용 방법
 
 1. 프롬프트 파일 열기
