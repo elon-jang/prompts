@@ -15,6 +15,10 @@
 - `development/plan-mode-setting.md` - AI 에이전트 Plan Mode 설정
 - `development/spec-interview.md` - SPEC.md 기반 요구사항 인터뷰
 
+## Images (이미지)
+
+- `images/midjourney-바이올리니스트-프로필-사진.md` - Midjourney 프롬프트: 증명사진 얼굴을 바이올리니스트 포즈에 합성
+
 ## Productivity
 
 - `productivity/pdf-본문-외-페이지-삭제.md` - PDF 본문 외 페이지 삭제 도구
