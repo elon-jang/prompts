@@ -21,6 +21,7 @@
 
 ## Productivity
 
+- `productivity/excel-issue-data-pivot-sheet-split.md` - 엑셀 이슈 목록을 피벗 테이블로 요약하고 조합별 시트로 분리
 - `productivity/pdf-본문-외-페이지-삭제.md` - PDF 본문 외 페이지 삭제 도구
 - `productivity/헌금-데이터-개인별-월별-정리.md` - 교회 헌금 데이터를 개인별/월별로 정리하는 엑셀 생성 프롬프트
 
