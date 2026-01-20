@@ -21,6 +21,7 @@
 
 ## Productivity
 
+- `productivity/claude-code-automation-blog-post.md` - Claude Code로 반복 업무 자동화한 경험담 블로그 작성
 - `productivity/bizinfo-crawling.md` - 기업지원 공고 크롤링 및 마감일 필터링 스크립트
 - `productivity/excel-file-merge.md` - 여러 엑셀 파일을 하나로 병합하고 서식 설정
 - `productivity/excel-issue-data-pivot-sheet-split.md` - 엑셀 이슈 목록을 피벗 테이블로 요약하고 조합별 시트로 분리
