@@ -28,6 +28,10 @@
 - `productivity/word-mail-merge.md` - 엑셀 데이터로 워드 양식을 치환하여 대량 문서 생성
 - `productivity/헌금-데이터-개인별-월별-정리.md` - 교회 헌금 데이터를 개인별/월별로 정리하는 엑셀 생성 프롬프트
 
+## Writing (글쓰기)
+
+- `writing/guseul-english-blog-post.md` - 구슬샘 유튜브 영상 학습 내용을 블로그 포스팅으로 정리
+
 ## 사용 방법
 
 1. 프롬프트 파일 열기
