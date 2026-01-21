@@ -32,6 +32,7 @@
 ## Writing (글쓰기)
 
 - `writing/guseul-english-blog-post.md` - 구슬샘 유튜브 영상 학습 내용을 블로그 포스팅으로 정리
+- `writing/longblack-insight-blog-curator.md` - 롱블랙 인터뷰 콘텐츠를 블로그 형식으로 재구성
 
 ## 사용 방법
 
