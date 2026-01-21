@@ -31,6 +31,7 @@
 
 ## Writing (글쓰기)
 
+- `writing/developer-automation-story-blog.md` - 개발자 자동화 경험을 "막(Act)" 기반 스토리텔링으로 블로그 작성
 - `writing/guseul-english-blog-post.md` - 구슬샘 유튜브 영상 학습 내용을 블로그 포스팅으로 정리
 - `writing/longblack-insight-curator-v2.md` - 롱블랙 인터뷰 콘텐츠를 6가지 모드로 재구성 (블로그/SNS/뉴스레터 등)
 
