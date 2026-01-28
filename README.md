@@ -39,6 +39,7 @@
 
 <!-- spark-index:blog -->
 - [2026-01-21] [[Playwright] 삭제 버튼 52번 누르기 싫어서 만든 자동화 스크립트](blog/2026-01-21-playwright-삭제-버튼-52번-누르기-싫어서-만든-자동화-스크립트.md)
+- [`blog/office-desk-leg-stretching-video-prompt.md`](https://github.com/elon-jang/prompts/blob/main/blog/office-desk-leg-stretching-video-prompt.md) - 사무실 책상 아래에서 하는 다리 스트레칭 운동 시네마틱 영상 생성 프롬프트
 
 ## 사용 방법
 
