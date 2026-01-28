@@ -17,6 +17,7 @@
 
 ## Images (이미지)
 
+- [`images/ergonomic-posture-guide-image-prompt.md`](https://github.com/elon-jang/prompts/blob/main/images/ergonomic-posture-guide-image-prompt.md) - 사무실 인체공학 자세를 기술 도표와 함께 보여주는 이미지 생성 프롬프트
 - `images/midjourney-바이올리니스트-프로필-사진.md` - Midjourney 프롬프트: 증명사진 얼굴을 바이올리니스트 포즈에 합성
 
 ## Productivity
