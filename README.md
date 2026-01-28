@@ -19,6 +19,7 @@
 
 - [`images/ergonomic-posture-guide-image-prompt.md`](https://github.com/elon-jang/prompts/blob/main/images/ergonomic-posture-guide-image-prompt.md) - 사무실 인체공학 자세를 기술 도표와 함께 보여주는 이미지 생성 프롬프트
 - `images/midjourney-바이올리니스트-프로필-사진.md` - Midjourney 프롬프트: 증명사진 얼굴을 바이올리니스트 포즈에 합성
+- [`images/office-desk-leg-stretching-video-prompt.md`](https://github.com/elon-jang/prompts/blob/main/images/office-desk-leg-stretching-video-prompt.md) - 사무실 책상 아래에서 하는 다리 스트레칭 운동 시네마틱 영상 생성 프롬프트
 
 ## Productivity
 
@@ -40,7 +41,6 @@
 
 <!-- spark-index:blog -->
 - [2026-01-21] [[Playwright] 삭제 버튼 52번 누르기 싫어서 만든 자동화 스크립트](blog/2026-01-21-playwright-삭제-버튼-52번-누르기-싫어서-만든-자동화-스크립트.md)
-- [`blog/office-desk-leg-stretching-video-prompt.md`](https://github.com/elon-jang/prompts/blob/main/blog/office-desk-leg-stretching-video-prompt.md) - 사무실 책상 아래에서 하는 다리 스트레칭 운동 시네마틱 영상 생성 프롬프트
 
 ## 사용 방법
 
