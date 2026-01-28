@@ -37,11 +37,6 @@
 - `writing/guseul-english-blog-post.md` - 구슬샘 유튜브 영상 학습 내용을 블로그 포스팅으로 정리
 - `writing/longblack-insight-curator-v2.md` - 롱블랙 인터뷰 콘텐츠를 6가지 모드로 재구성 (블로그/SNS/뉴스레터 등)
 
-## Blog
-
-<!-- spark-index:blog -->
-- [2026-01-21] [[Playwright] 삭제 버튼 52번 누르기 싫어서 만든 자동화 스크립트](blog/2026-01-21-playwright-삭제-버튼-52번-누르기-싫어서-만든-자동화-스크립트.md)
-
 ## 사용 방법
 
 1. 프롬프트 파일 열기
