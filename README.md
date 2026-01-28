@@ -2,13 +2,6 @@
 
 좋은 AI 프롬프트 모음입니다.
 
-## Infrastructure (인프라 관리)
-
-- [`infrastructure/tencent-vm-start.md`](https://github.com/elon-jang/prompts/blob/main/infrastructure/tencent-vm-start.md) - Tencent Cloud VM 시작
-- [`infrastructure/tencent-vm-stop.md`](https://github.com/elon-jang/prompts/blob/main/infrastructure/tencent-vm-stop.md) - Tencent Cloud VM 중지
-- [`infrastructure/tencent-vm-status.md`](https://github.com/elon-jang/prompts/blob/main/infrastructure/tencent-vm-status.md) - Tencent Cloud VM 상태 조회
-- [`infrastructure/tencent-vm-manage.md`](https://github.com/elon-jang/prompts/blob/main/infrastructure/tencent-vm-manage.md) - Tencent Cloud VM 통합 관리
-
 ## Development (개발)
 
 - [`development/llm-skill-design-principles.md`](https://github.com/elon-jang/prompts/blob/main/development/llm-skill-design-principles.md) - Best practices for designing LLM skills with orchestration and tool separation
