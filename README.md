@@ -18,6 +18,7 @@
 
 - [`productivity/claude-code-automation-blog-post.md`](https://github.com/elon-jang/prompts/blob/main/productivity/claude-code-automation-blog-post.md) - Claude Code로 반복 업무 자동화한 경험담 블로그 작성
 - [`productivity/bizinfo-crawling.md`](https://github.com/elon-jang/prompts/blob/main/productivity/bizinfo-crawling.md) - 기업지원 공고 크롤링 및 마감일 필터링 스크립트
+- [`productivity/다중-소스-분석-보고서-생성기.md`](https://github.com/elon-jang/prompts/blob/main/productivity/%EB%8B%A4%EC%A4%91-%EC%86%8C%EC%8A%A4-%EB%B6%84%EC%84%9D-%EB%B3%B4%EA%B3%A0%EC%84%9C-%EC%83%9D%EC%84%B1%EA%B8%B0.md) - 여러 소스의 공통점과 독창적 주장을 초등학생도 이해할 수 있게 정리
 - [`productivity/excel-file-merge.md`](https://github.com/elon-jang/prompts/blob/main/productivity/excel-file-merge.md) - 여러 엑셀 파일을 하나로 병합하고 서식 설정
 - [`productivity/excel-issue-data-pivot-sheet-split.md`](https://github.com/elon-jang/prompts/blob/main/productivity/excel-issue-data-pivot-sheet-split.md) - 엑셀 이슈 목록을 피벗 테이블로 요약하고 조합별 시트로 분리
 - [`productivity/pdf-본문-외-페이지-삭제.md`](https://github.com/elon-jang/prompts/blob/main/productivity/pdf-%EB%B3%B8%EB%AC%B8-%EC%99%B8-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%82%AD%EC%A0%9C.md) - PDF 본문 외 페이지 삭제 도구
